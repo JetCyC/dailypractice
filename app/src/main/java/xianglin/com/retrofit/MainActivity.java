@@ -8,6 +8,8 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
 
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,6 +17,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import xianglin.com.retrofit.bean.Student;
+import xianglin.com.retrofit.bean.User;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,10 +26,38 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
+        //get();
+        post();
     }
 
-    private void init() {
+    private void post() {
+        Retrofit retrofit = new Retrofit
+                .Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("https://www.test.com/")
+                .build();
+        GitHubService gitHubService = retrofit.create(GitHubService.class);
+        Call<ResponseBody> call = gitHubService.login(new User("18611990521", "abc123456"));
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response == null) return;
+                if (response.isSuccessful()) {
+                    Log.e("TAG", response.body().toString());
+                }else{
+                    Log.e("TAG", "失败");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void get() {
         Retrofit retrofit = new Retrofit
                 .Builder()
                 .addConverterFactory(GsonConverterFactory.create()) //使用工厂模式创建Gason的解析器
