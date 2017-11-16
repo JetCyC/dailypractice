@@ -1,8 +1,11 @@
 package xianglin.com.retrofit;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -18,9 +21,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import xianglin.com.retrofit.bean.Student;
 import xianglin.com.retrofit.bean.User;
+import xianglin.com.retrofit.rxjava.FirstActivity;
 
 
 public class MainActivity extends AppCompatActivity {
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //get();
         post();
+        initView();
+    }
+
+    private void initView() {
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, FirstActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
     private void post() {
@@ -44,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 if (response == null) return;
                 if (response.isSuccessful()) {
                     Log.e("TAG", response.body().toString());
-                }else{
+                } else {
                     Log.e("TAG", "失败");
                 }
 
