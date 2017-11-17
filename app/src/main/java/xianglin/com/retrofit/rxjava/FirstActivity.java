@@ -19,7 +19,6 @@ import xianglin.com.retrofit.R;
 public class FirstActivity extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +29,40 @@ public class FirstActivity extends AppCompatActivity {
     }
 
 
-
     private void initRxjava() {
-        //上游  下游  订阅
-        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+//        //上游  下游  订阅
+//        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+//
+//            }
+//        });
+//        //下游
+//        Observer observer = new Observer() {
+//            @Override
+//            public void onSubscribe(Disposable d) {
+//                Log.e("TAG", "subscribe");
+//            }
+//
+//            @Override
+//            public void onNext(Object value) {
+//
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                Log.e("TAG", "error");
+//            }
+//
+//            @Override
+//            public void onComplete() {
+//
+//            }
+//        };
+//
+//        observable.subscribe(observer);
+
+        Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
             public void subscribe(ObservableEmitter<Integer> e) throws Exception {
                 e.onNext(1);
@@ -41,31 +70,26 @@ public class FirstActivity extends AppCompatActivity {
                 e.onNext(3);
                 e.onComplete();
             }
-        });
-        //下游
-        Observer observer = new Observer() {
+        }).subscribe(new Observer<Integer>() {
             @Override
             public void onSubscribe(Disposable d) {
-                Log.e("TAG", "subscribe");
+
             }
 
             @Override
-            public void onNext(Object value) {
+            public void onNext(Integer value) {
                 Log.e("TAG", value.toString());
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.e("TAG", "error");
+
             }
 
             @Override
             public void onComplete() {
                 Log.e("TAG", "complete");
             }
-        };
-
-        observable.subscribe();
-
+        });
     }
 }

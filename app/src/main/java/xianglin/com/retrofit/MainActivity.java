@@ -32,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //get();
-        post();
+        // post();
         initView();
     }
 
     private void initView() {
-
+        button = (Button) findViewById(R.id.bt_next);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
