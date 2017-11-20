@@ -1,12 +1,10 @@
 
 package xianglin.com.retrofit.rxjava;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.widget.Toast;
 
 
 import io.reactivex.Observable;
@@ -78,7 +76,7 @@ public class FirstActivity extends AppCompatActivity {
 
             @Override
             public void onNext(Integer value) {
-                Log.e("TAG", value.toString());
+                Toast.makeText(FirstActivity.this, value.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
