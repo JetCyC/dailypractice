@@ -8,9 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
 import java.io.IOException;
 import java.util.List;
 
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -32,12 +39,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //get();
-        // post();
+
         initView();
     }
 
     private void initView() {
         button = (Button) findViewById(R.id.bt_next);
+        button = (Button) findViewById(R.id.bt_login);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,33 +55,49 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                post();
+            }
+        });
     }
 
     private void post() {
         Retrofit retrofit = new Retrofit
                 .Builder()
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl("https://www.test.com/")
                 .build();
+
         GitHubService gitHubService = retrofit.create(GitHubService.class);
-        Call<ResponseBody> call = gitHubService.login(new User("18611990521", "abc123456"));
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response == null) return;
-                if (response.isSuccessful()) {
-                    Log.e("TAG", response.body().toString());
-                } else {
-                    Log.e("TAG", "失败");
-                }
+        gitHubService.login(new User("18611990521", "abc123456"))
+                .subscribeOn(Schedulers.io())//上游在io线程进行网络请求
+                .observeOn(AndroidSchedulers.mainThread())//下游主线程处理结果
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-            }
+                    }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    @Override
+                    public void onNext(ResponseBody value) {
+                        Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                    }
 
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(MainActivity.this, "登录错误", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+
     }
 
     private void get() {

@@ -2,6 +2,7 @@ package xianglin.com.retrofit;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -26,7 +27,7 @@ public interface GitHubService {
     Call<List<Student>> listRepos(@Path("user") String user);
 
     @POST("mobile/login")
-    Call<ResponseBody> login(@Body User user);
+    Observable<ResponseBody> login(@Body User user);
 
 
 }
