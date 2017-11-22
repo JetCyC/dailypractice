@@ -67,11 +67,11 @@ public class FirstActivity extends AppCompatActivity {
                 e.onNext(2);
                 e.onNext(3);
                 e.onComplete();
+                e.onNext(4);
             }
         }).subscribe(new Observer<Integer>() {
             @Override
             public void onSubscribe(Disposable d) {
-
             }
 
             @Override
