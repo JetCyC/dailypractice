@@ -16,6 +16,7 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Request;
@@ -29,24 +30,40 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import xianglin.com.retrofit.bean.Student;
 import xianglin.com.retrofit.bean.User;
 import xianglin.com.retrofit.rxjava.FirstActivity;
+import xianglin.com.retrofit.rxjava.MapActivity;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
+    private Button button1;
+    private Button button2;
+    private Button button3;
+    private CompositeDisposable mCompositeDisposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mCompositeDisposable = new CompositeDisposable();
         //get();
 
         initView();
     }
 
+
     private void initView() {
-        button = (Button) findViewById(R.id.bt_next);
-        button = (Button) findViewById(R.id.bt_login);
-        button.setOnClickListener(new View.OnClickListener() {
+        button1 = (Button) findViewById(R.id.bt_next);
+        button2 = (Button) findViewById(R.id.bt_login);
+        button3 = (Button) findViewById(R.id.bt_map);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -55,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 post();
@@ -78,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(new Observer<ResponseBody>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        mCompositeDisposable.add(d);
                     }
 
                     @Override
@@ -131,6 +148,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mCompositeDisposable.clear();
     }
 }
