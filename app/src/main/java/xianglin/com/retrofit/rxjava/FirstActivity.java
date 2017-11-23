@@ -33,7 +33,7 @@ public class FirstActivity extends AppCompatActivity {
 
     private void initRxjava() {
 
-        Observable<Integer> observable= Observable.create(new ObservableOnSubscribe<Integer>() {
+        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
             public void subscribe(ObservableEmitter<Integer> e) throws Exception {
                 Toast.makeText(FirstActivity.this, Thread.currentThread().getName(),
@@ -45,7 +45,7 @@ public class FirstActivity extends AppCompatActivity {
         });
 
 
-        Observer<Integer> observer=new Observer<Integer>() {
+        Observer<Integer> observer = new Observer<Integer>() {
             @Override
             public void onSubscribe(Disposable d) {
 
