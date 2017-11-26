@@ -5,9 +5,14 @@ import android.os.Bundle;
 import android.util.Log;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import xianglin.com.retrofit.R;
@@ -33,15 +38,20 @@ public class MapActivity extends AppCompatActivity {
                 e.onNext(3);
 
             }
-        }).map(new Function<Integer, String>() {
+        }).concatMap(new Function<Integer, ObservableSource<String>>() {
             @Override
-            public String apply(Integer integer) throws Exception {
-                return "String" + integer;
+            public ObservableSource<String> apply(Integer integer) throws Exception {
+                final List<String> list = new ArrayList<>();
+                for (int i = 0; i < 3; i++) {
+                    list.add("I am value" + integer);
+
+                }
+                return Observable.fromIterable(list).delay(10, TimeUnit.MILLISECONDS);
             }
         }).subscribe(new Consumer<String>() {
             @Override
             public void accept(String s) throws Exception {
-                Log.e("TAG",s);
+                Log.e("TAG", s);
             }
         });
 
