@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -13,9 +15,18 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import xianglin.com.retrofit.GitHubService;
 import xianglin.com.retrofit.R;
+import xianglin.com.retrofit.bean.LoginRequest;
+import xianglin.com.retrofit.bean.LoginResponse;
+import xianglin.com.retrofit.bean.RegisterRequest;
+import xianglin.com.retrofit.bean.RegisterResponse;
 
 public class MapActivity extends AppCompatActivity {
 
@@ -27,34 +38,41 @@ public class MapActivity extends AppCompatActivity {
     }
 
     private void initMap() {
+        Retrofit retrofit = new Retrofit
+                .Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl("https://www.test.com/")
+                .build();
 
-        Observable.create(new ObservableOnSubscribe<Integer>() {
+        final GitHubService gitHubService = retrofit.create(GitHubService.class);
+        gitHubService.register(new RegisterRequest())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(new Consumer<RegisterResponse>() {
+                    @Override
+                    public void accept(RegisterResponse registerResponse) throws Exception {
+                        //拿到相应结果
+                    }
+                }).observeOn(Schedulers.io())
+                .flatMap(new Function<RegisterResponse, ObservableSource<LoginResponse>>() {
+                    @Override
+                    public ObservableSource<LoginResponse> apply(RegisterResponse registerResponse) throws Exception {
 
+                        return gitHubService.lologin(new LoginRequest());
+                    }
+                }).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<LoginResponse>() {
+                    @Override
+                    public void accept(LoginResponse loginResponse) throws Exception {
 
-            @Override//发送
-            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
-                e.onNext(1);
-                e.onNext(2);
-                e.onNext(3);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
 
-            }
-        }).concatMap(new Function<Integer, ObservableSource<String>>() {
-            @Override
-            public ObservableSource<String> apply(Integer integer) throws Exception {
-                final List<String> list = new ArrayList<>();
-                for (int i = 0; i < 3; i++) {
-                    list.add("I am value" + integer);
-
-                }
-                return Observable.fromIterable(list).delay(10, TimeUnit.MILLISECONDS);
-            }
-        }).subscribe(new Consumer<String>() {
-            @Override
-            public void accept(String s) throws Exception {
-                Log.e("TAG", s);
-            }
-        });
-
+                    }
+                });
 
     }
 }

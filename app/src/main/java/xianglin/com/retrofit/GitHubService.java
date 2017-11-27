@@ -9,6 +9,10 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import xianglin.com.retrofit.bean.LoginRequest;
+import xianglin.com.retrofit.bean.LoginResponse;
+import xianglin.com.retrofit.bean.RegisterRequest;
+import xianglin.com.retrofit.bean.RegisterResponse;
 import xianglin.com.retrofit.bean.Student;
 import xianglin.com.retrofit.bean.User;
 
@@ -28,6 +32,12 @@ public interface GitHubService {
 
     @POST("mobile/login")
     Observable<ResponseBody> login(@Body User user);
+
+    @GET
+    Observable<LoginResponse>  lologin(@Body LoginRequest loginRequest);
+
+    @GET
+    Observable<RegisterResponse> register(@Body RegisterRequest registerRequest);
 
 
 }

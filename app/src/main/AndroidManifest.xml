@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".rxjava.FirstActivity" />
-        <activity android:name=".rxjava.MapActivity"></activity>
+        <activity android:name=".rxjava.MapActivity" />
+        <activity android:name=".rxjava.ZipActivity"></activity>
     </application>
 
 </manifest>

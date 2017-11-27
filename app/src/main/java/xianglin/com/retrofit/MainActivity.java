@@ -31,12 +31,14 @@ import xianglin.com.retrofit.bean.Student;
 import xianglin.com.retrofit.bean.User;
 import xianglin.com.retrofit.rxjava.FirstActivity;
 import xianglin.com.retrofit.rxjava.MapActivity;
+import xianglin.com.retrofit.rxjava.ZipActivity;
 
 
 public class MainActivity extends AppCompatActivity {
     private Button button1;
     private Button button2;
     private Button button3;
+    private Button button4;
     private CompositeDisposable mCompositeDisposable;
 
     @Override
@@ -54,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
         button1 = (Button) findViewById(R.id.bt_next);
         button2 = (Button) findViewById(R.id.bt_login);
         button3 = (Button) findViewById(R.id.bt_map);
+        button4 = (Button) findViewById(R.id.bt_zip);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ZipActivity.class);
+                startActivity(intent);
+            }
+        });
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

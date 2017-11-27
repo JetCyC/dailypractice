@@ -34,4 +34,10 @@
         android:layout_height="wrap_content"
         android:text="Map" />
 
+    <Button
+        android:id="@+id/bt_zip"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Zip" />
+
 </LinearLayout>
