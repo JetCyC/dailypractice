@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -27,38 +29,18 @@ public class ZipActivity extends AppCompatActivity {
         Observable<Integer> observable1 = Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
             public void subscribe(ObservableEmitter<Integer> e) throws Exception {
-                Log.e("TAG", "1");
-                e.onNext(1);
-                Thread.sleep(1000);
-                Log.e("TAG", "2");
-                e.onNext(2);
-                Thread.sleep(1000);
-                Log.e("TAG", "3");
-                e.onNext(3);
-                Thread.sleep(1000);
-                Log.e("TAG", "4");
-                e.onNext(4);
-                Thread.sleep(1000);
-                Log.e("TAG", "integer+oncomplete");
-                e.onComplete();
+                for (int i = 0; ; i++) {
+                    e.onNext(i);
+                }
             }
-        }).subscribeOn(Schedulers.io());
+        }).subscribeOn(Schedulers.io()).sample(2, TimeUnit.SECONDS);
 
 
         Observable<String> observable2 = Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> e) throws Exception {
-                Log.e("TAG", "A");
                 e.onNext("A");
-                Thread.sleep(1000);
-                Log.e("TAG", "B");
-                e.onNext("B");
-                Thread.sleep(1000);
-                Log.e("TAG", "C");
-                e.onNext("C");
-                Thread.sleep(1000);
-                Log.e("TAG", "String+oncomplete");
-                e.onComplete();
+
             }
         }).subscribeOn(Schedulers.io());
 
