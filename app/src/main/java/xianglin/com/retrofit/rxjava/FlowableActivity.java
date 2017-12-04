@@ -42,20 +42,15 @@ public class FlowableActivity extends AppCompatActivity {
     }
 
     private void init() {
-         Flowable.create(new FlowableOnSubscribe<Integer>() {
+        Flowable.create(new FlowableOnSubscribe<Integer>() {
             @Override
             public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
-                Log.e("TAG", "emit 1");
-                emitter.onNext(1);
-                Log.e("TAG", "emit 2");
-                emitter.onNext(2);
-                Log.e("TAG", "emit 3");
-                emitter.onNext(3);
-                Log.e("TAG", "emit onComplete");
-                emitter.onComplete();
-
+                for (int i = 0; ; i++) {
+                    Log.e("TAG", "emit" + i);
+                    emitter.onNext(i);
+                }
             }
-        }, BackpressureStrategy.ERROR).subscribeOn(Schedulers.io())
+        }, BackpressureStrategy.DROP).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Integer>() {
                     @Override

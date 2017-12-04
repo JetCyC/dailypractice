@@ -21,7 +21,8 @@
         <activity android:name=".rxjava.FirstActivity" />
         <activity android:name=".rxjava.MapActivity" />
         <activity android:name=".rxjava.ZipActivity" />
-        <activity android:name=".rxjava.FlowableActivity"></activity>
+        <activity android:name=".rxjava.FlowableActivity" />
+        <activity android:name=".rxjava.IntervalActivity"></activity>
     </application>
 
 </manifest>
