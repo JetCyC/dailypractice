@@ -8,9 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
 import java.io.IOException;
 import java.util.List;
 
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -22,23 +30,50 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import xianglin.com.retrofit.bean.Student;
 import xianglin.com.retrofit.bean.User;
 import xianglin.com.retrofit.rxjava.FirstActivity;
+import xianglin.com.retrofit.rxjava.MapActivity;
+import xianglin.com.retrofit.rxjava.ZipActivity;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
+    private Button button1;
+    private Button button2;
+    private Button button3;
+    private Button button4;
+    private CompositeDisposable mCompositeDisposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mCompositeDisposable = new CompositeDisposable();
         //get();
-        // post();
+
         initView();
     }
 
+
     private void initView() {
-        button = (Button) findViewById(R.id.bt_next);
-        button.setOnClickListener(new View.OnClickListener() {
+        button1 = (Button) findViewById(R.id.bt_next);
+        button2 = (Button) findViewById(R.id.bt_login);
+        button3 = (Button) findViewById(R.id.bt_map);
+        button4 = (Button) findViewById(R.id.bt_zip);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ZipActivity.class);
+                startActivity(intent);
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -47,33 +82,49 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                post();
+            }
+        });
     }
 
     private void post() {
         Retrofit retrofit = new Retrofit
                 .Builder()
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl("https://www.test.com/")
                 .build();
+
         GitHubService gitHubService = retrofit.create(GitHubService.class);
-        Call<ResponseBody> call = gitHubService.login(new User("18611990521", "abc123456"));
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response == null) return;
-                if (response.isSuccessful()) {
-                    Log.e("TAG", response.body().toString());
-                } else {
-                    Log.e("TAG", "失败");
-                }
+        gitHubService.login(new User("18611990521", "abc123456"))
+                .subscribeOn(Schedulers.io())//上游在io线程进行网络请求
+                .observeOn(AndroidSchedulers.mainThread())//下游主线程处理结果
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        mCompositeDisposable.add(d);
+                    }
 
-            }
+                    @Override
+                    public void onNext(ResponseBody value) {
+                        Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                    }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(MainActivity.this, "登录错误", Toast.LENGTH_SHORT).show();
+                    }
 
-            }
-        });
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+
     }
 
     private void get() {
@@ -107,6 +158,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mCompositeDisposable.clear();
     }
 }
