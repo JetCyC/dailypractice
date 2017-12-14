@@ -42,10 +42,7 @@ public class FirstActivity extends AppCompatActivity {
 
         });
 
-<<<<<<< HEAD
 
-=======
->>>>>>> af50af2c31339cd67bf88ed0282f0ee43a8c2c16
         Observer<Integer> observer = new Observer<Integer>() {
             @Override
             public void onSubscribe(Disposable d) {
