@@ -1,6 +1,7 @@
 package xianglin.com.retrofit.rxjava;
 
 import android.nfc.Tag;
+import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,18 +46,26 @@ public class FlowableActivity extends AppCompatActivity {
         Flowable.create(new FlowableOnSubscribe<Integer>() {
             @Override
             public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
-                for (int i = 0; ; i++) {
-                    Log.e("TAG", "emit" + i);
-                    emitter.onNext(i);
-                }
+                //emitter.onNext(1);
+                Log.e("TAG", "emit" + emitter.requested());
+
+//                emitter.onNext(1);
+//                Log.e("TAG", "emit" + emitter.requested());
+//
+//                emitter.onNext(1);
+//                Log.e("TAG", "emit" + emitter.requested());
+
+
             }
-        }, BackpressureStrategy.DROP).subscribeOn(Schedulers.io())
+        }, BackpressureStrategy.ERROR)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Integer>() {
                     @Override
                     public void onSubscribe(Subscription s) {
                         Log.e("TAG", "onSubscribe");
                         mSubscription = s;
+                        s.request(2);//告诉上游处理能力
                     }
 
                     @Override
@@ -66,7 +75,7 @@ public class FlowableActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(Throwable t) {
-                        Log.e("TAG", "onError");
+                        Log.e("TAG", t.getMessage());
                     }
 
                     @Override
