@@ -16,6 +16,7 @@ import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import xianglin.com.retrofit.R;
 
@@ -49,6 +50,9 @@ public class FlowableActivity extends AppCompatActivity {
                 //emitter.onNext(1);
                 Log.e("TAG", "emit" + emitter.requested());
 
+                for (int i = 0; i < 129; i++) {
+                    emitter.onNext(i);
+                }
 //                emitter.onNext(1);
 //                Log.e("TAG", "emit" + emitter.requested());
 //
@@ -57,7 +61,7 @@ public class FlowableActivity extends AppCompatActivity {
 
 
             }
-        }, BackpressureStrategy.ERROR)
+        }, BackpressureStrategy.ERROR)//处理背压的策略
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Integer>() {
@@ -65,7 +69,7 @@ public class FlowableActivity extends AppCompatActivity {
                     public void onSubscribe(Subscription s) {
                         Log.e("TAG", "onSubscribe");
                         mSubscription = s;
-                        s.request(2);//告诉上游处理能力
+                        //s.request(1000);//告诉上游处理能力
                     }
 
                     @Override
