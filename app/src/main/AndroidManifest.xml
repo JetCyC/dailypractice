@@ -22,7 +22,14 @@
         <activity android:name=".rxjava.MapActivity" />
         <activity android:name=".rxjava.ZipActivity" />
         <activity android:name=".rxjava.FlowableActivity" />
-        <activity android:name=".rxjava.IntervalActivity"></activity>
+        <activity android:name=".rxjava.IntervalActivity" />
+
+        <service
+            android:name=".downloadservice.DownloadService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".downloadservice.DownloadActivity"></activity>
     </application>
 
 </manifest>

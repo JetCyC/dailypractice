@@ -29,6 +29,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import xianglin.com.retrofit.bean.Student;
 import xianglin.com.retrofit.bean.User;
+import xianglin.com.retrofit.downloadservice.DownloadActivity;
 import xianglin.com.retrofit.rxjava.FirstActivity;
 import xianglin.com.retrofit.rxjava.FlowableActivity;
 import xianglin.com.retrofit.rxjava.IntervalActivity;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button4;
     private Button button5;
     private Button button6;
+    private Button button7;
     private CompositeDisposable mCompositeDisposable;
 
     @Override
@@ -63,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         button4 = (Button) findViewById(R.id.bt_zip);
         button5 = (Button) findViewById(R.id.bt_flowable);
         button6 = (Button) findViewById(R.id.bt_interval);
+        button7 = (Button) findViewById(R.id.bt_download);
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DownloadActivity.class);
+                startActivity(intent);
+            }
+        });
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
