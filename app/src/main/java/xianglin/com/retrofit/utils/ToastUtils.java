@@ -11,10 +11,17 @@ import xianglin.com.retrofit.MyApplication;
 
 public class ToastUtils {
 
+    private static Toast mToast;
+
     public static void showMsg(String msg) {
         if (TextUtils.isEmpty(msg)) {
             return;
         }
-        Toast.makeText(MyApplication.getInstance(), msg, Toast.LENGTH_SHORT).show();
+        if (mToast == null) {
+            mToast = Toast.makeText(MyApplication.getInstance(), msg, Toast.LENGTH_SHORT);
+        } else {
+            mToast.setText(msg);
+        }
+        mToast.show();
     }
 }

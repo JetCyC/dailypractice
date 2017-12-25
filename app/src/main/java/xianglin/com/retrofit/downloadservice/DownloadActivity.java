@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.widget.Button;
 
 import xianglin.com.retrofit.MainActivity;
 import xianglin.com.retrofit.R;
+import xianglin.com.retrofit.utils.ToastUtils;
 
 public class DownloadActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -59,7 +61,7 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
 
         switch (v.getId()) {
             case R.id.bt_start:
-                String url = "";
+                String url = "http://shouji.baidu.com/software/23018246.html";
                 downloadBinder.startDownload(url);
                 break;
             case R.id.bt_pause:
@@ -83,5 +85,23 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
         }
     };
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    ToastUtils.showMsg("拒绝权限将无法使用");
+                    finish();
+                }
+                break;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(connection);
+    }
 }
