@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="xianglin.com.retrofit.MainActivity">
+    tools:context="xianglin.com.retrofit.biz.downloadservice.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,5 +57,11 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="download" />
+
+    <Button
+        android:id="@+id/bt_sqlite"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="sqlite" />
 
 </LinearLayout>

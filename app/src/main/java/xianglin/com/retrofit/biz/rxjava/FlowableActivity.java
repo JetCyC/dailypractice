@@ -1,7 +1,5 @@
-package xianglin.com.retrofit.rxjava;
+package xianglin.com.retrofit.biz.rxjava;
 
-import android.nfc.Tag;
-import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +14,6 @@ import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import xianglin.com.retrofit.R;
 

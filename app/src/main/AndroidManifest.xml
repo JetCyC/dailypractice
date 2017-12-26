@@ -6,32 +6,33 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".MyApplication"
+        android:name=".biz.downloadservice.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".biz.downloadservice.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".rxjava.FirstActivity" />
-        <activity android:name=".rxjava.MapActivity" />
-        <activity android:name=".rxjava.ZipActivity" />
-        <activity android:name=".rxjava.FlowableActivity" />
-        <activity android:name=".rxjava.IntervalActivity" />
+        <activity android:name=".biz.rxjava.FirstActivity" />
+        <activity android:name=".biz.rxjava.MapActivity" />
+        <activity android:name=".biz.rxjava.ZipActivity" />
+        <activity android:name=".biz.rxjava.FlowableActivity" />
+        <activity android:name=".biz.rxjava.IntervalActivity" />
 
         <service
-            android:name=".downloadservice.DownloadService"
+            android:name=".biz.downloadservice.DownloadService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".downloadservice.DownloadActivity"></activity>
+        <activity android:name=".biz.downloadservice.DownloadActivity" />
+        <activity android:name=".biz.sqlite.SqActivity"></activity>
     </application>
 
 </manifest>

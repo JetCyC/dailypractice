@@ -1,4 +1,4 @@
-package xianglin.com.retrofit.downloadservice;
+package xianglin.com.retrofit.biz.downloadservice;
 
 /**
  * 下载回调

@@ -1,8 +1,7 @@
-package xianglin.com.retrofit.downloadservice;
+package xianglin.com.retrofit.biz.downloadservice;
 
 import android.Manifest;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
@@ -15,7 +14,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import xianglin.com.retrofit.MainActivity;
 import xianglin.com.retrofit.R;
 import xianglin.com.retrofit.utils.ToastUtils;
 

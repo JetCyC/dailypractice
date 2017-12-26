@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".biz.rxjava.FirstActivity">
+    tools:context="xianglin.com.retrofit.biz.sqlite.SqActivity">
 
 </android.support.constraint.ConstraintLayout>

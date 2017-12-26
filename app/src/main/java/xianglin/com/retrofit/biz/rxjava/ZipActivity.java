@@ -1,4 +1,4 @@
-package xianglin.com.retrofit.rxjava;
+package xianglin.com.retrofit.biz.rxjava;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

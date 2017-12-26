@@ -1,4 +1,4 @@
-package xianglin.com.retrofit;
+package xianglin.com.retrofit.biz.downloadservice;
 
 import java.util.List;
 

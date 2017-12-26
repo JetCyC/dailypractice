@@ -3,7 +3,8 @@ package xianglin.com.retrofit.utils;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import xianglin.com.retrofit.MyApplication;
+import xianglin.com.retrofit.biz.MyApplication;
+
 
 /**
  * Created by ex-caoyanchang on 2017/12/24.

@@ -1,8 +1,8 @@
-package xianglin.com.retrofit;
+package xianglin.com.retrofit.biz;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,34 +10,40 @@ import android.widget.Toast;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
-import java.io.IOException;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import xianglin.com.retrofit.R;
 import xianglin.com.retrofit.bean.Student;
 import xianglin.com.retrofit.bean.User;
-import xianglin.com.retrofit.downloadservice.DownloadActivity;
-import xianglin.com.retrofit.rxjava.FirstActivity;
-import xianglin.com.retrofit.rxjava.FlowableActivity;
-import xianglin.com.retrofit.rxjava.IntervalActivity;
-import xianglin.com.retrofit.rxjava.MapActivity;
-import xianglin.com.retrofit.rxjava.ZipActivity;
+import xianglin.com.retrofit.biz.downloadservice.DownloadActivity;
+import xianglin.com.retrofit.biz.downloadservice.GitHubService;
+import xianglin.com.retrofit.biz.rxjava.FirstActivity;
+import xianglin.com.retrofit.biz.rxjava.FlowableActivity;
+import xianglin.com.retrofit.biz.rxjava.IntervalActivity;
+import xianglin.com.retrofit.biz.rxjava.MapActivity;
+import xianglin.com.retrofit.biz.rxjava.ZipActivity;
+import xianglin.com.retrofit.biz.sqlite.SqActivity;
 
 
 public class MainActivity extends AppCompatActivity {
+    @BindView(R.id.bt_sqlite)
+    Button btSqlite;
+    private Unbinder unbinder;
     private Button button1;
     private Button button2;
     private Button button3;
@@ -51,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        unbinder = ButterKnife.bind(this);
         mCompositeDisposable = new CompositeDisposable();
         //get();
 
@@ -196,5 +203,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mCompositeDisposable.clear();
+        if (unbinder == null) {
+            unbinder.unbind();
+        }
+    }
+
+    @OnClick(R.id.bt_sqlite)
+    public void onViewClicked() {
+        startActivity(new Intent(this, SqActivity.class));
     }
 }

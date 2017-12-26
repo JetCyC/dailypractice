@@ -1,4 +1,4 @@
-package xianglin.com.retrofit.downloadservice;
+package xianglin.com.retrofit.biz.downloadservice;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -13,7 +13,6 @@ import android.support.v7.app.NotificationCompat;
 
 import java.io.File;
 
-import xianglin.com.retrofit.MainActivity;
 import xianglin.com.retrofit.R;
 import xianglin.com.retrofit.utils.ToastUtils;
 
