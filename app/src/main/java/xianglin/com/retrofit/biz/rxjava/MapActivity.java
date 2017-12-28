@@ -18,7 +18,7 @@ import xianglin.com.retrofit.bean.LoginRequest;
 import xianglin.com.retrofit.bean.LoginResponse;
 import xianglin.com.retrofit.bean.RegisterRequest;
 import xianglin.com.retrofit.bean.RegisterResponse;
-import xianglin.com.retrofit.biz.downloadservice.GitHubService;
+import xianglin.com.retrofit.http.ApiService;
 
 public class MapActivity extends AppCompatActivity {
 
@@ -37,8 +37,8 @@ public class MapActivity extends AppCompatActivity {
                 .baseUrl("https://www.test.com/")
                 .build();
 
-        final GitHubService gitHubService = retrofit.create(GitHubService.class);
-        gitHubService.register(new RegisterRequest())
+        final ApiService apiService = retrofit.create(ApiService.class);
+        apiService.register(new RegisterRequest())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(new Consumer<RegisterResponse>() {
@@ -51,7 +51,7 @@ public class MapActivity extends AppCompatActivity {
                     @Override
                     public ObservableSource<LoginResponse> apply(RegisterResponse registerResponse) throws Exception {
 
-                        return gitHubService.lologin(new LoginRequest());
+                        return apiService.lologin(new LoginRequest());
                     }
                 }).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<LoginResponse>() {

@@ -31,7 +31,7 @@ import xianglin.com.retrofit.R;
 import xianglin.com.retrofit.bean.Student;
 import xianglin.com.retrofit.bean.User;
 import xianglin.com.retrofit.biz.downloadservice.DownloadActivity;
-import xianglin.com.retrofit.biz.downloadservice.GitHubService;
+import xianglin.com.retrofit.http.ApiService;
 import xianglin.com.retrofit.biz.rxjava.FirstActivity;
 import xianglin.com.retrofit.biz.rxjava.FlowableActivity;
 import xianglin.com.retrofit.biz.rxjava.IntervalActivity;
@@ -137,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
                 .baseUrl("https://www.test.com/")
                 .build();
 
-        GitHubService gitHubService = retrofit.create(GitHubService.class);
-        gitHubService.login(new User("18611990521", "abc123456"))
+        ApiService apiService = retrofit.create(ApiService.class);
+        apiService.login(new User("18611990521", "abc123456"))
                 .subscribeOn(Schedulers.io())//上游在io线程进行网络请求
                 .observeOn(AndroidSchedulers.mainThread())//下游主线程处理结果
                 .subscribe(new Observer<ResponseBody>() {
@@ -172,9 +172,9 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create()) //使用工厂模式创建Gason的解析器
                 .baseUrl("https://api.github.com/").build();
 
-        GitHubService gitHubService = retrofit.create(GitHubService.class);
+        ApiService apiService = retrofit.create(ApiService.class);
 
-        Call<List<Student>> call = gitHubService.listRepos("octocat");
+        Call<List<Student>> call = apiService.listRepos("octocat");
 
         call.enqueue(new Callback<List<Student>>() {
             @Override

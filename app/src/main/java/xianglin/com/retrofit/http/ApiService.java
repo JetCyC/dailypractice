@@ -1,4 +1,4 @@
-package xianglin.com.retrofit.biz.downloadservice;
+package xianglin.com.retrofit.http;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ import xianglin.com.retrofit.bean.User;
  * @email ex-caoyanchang@xianglin.cn
  */
 
-public interface GitHubService {
+public interface ApiService {
 
 
     @GET("users/{user}/repos")

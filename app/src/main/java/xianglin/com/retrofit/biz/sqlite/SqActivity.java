@@ -1,7 +1,13 @@
 package xianglin.com.retrofit.biz.sqlite;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import xianglin.com.retrofit.R;
 
@@ -12,7 +18,20 @@ public class SqActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sq);
-        init();
+        //init();
+        Date date = new Date();
+        DateFormat dateFormat=new DateFormat() {
+            @Override
+            public StringBuffer format(Date date, StringBuffer toAppendTo, FieldPosition fieldPosition) {
+                return null;
+            }
+
+            @Override
+            public Date parse(String source, ParsePosition pos) {
+                return null;
+            }
+        };
+
     }
 
     private void init() {
