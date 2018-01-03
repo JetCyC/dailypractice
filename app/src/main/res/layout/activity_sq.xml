@@ -4,6 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xianglin.com.retrofit.biz.sqlite.SqActivity">
+    tools:context="xianglin.com.retrofit.biz.sqlite.SqActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <Button
+        android:id="@+id/bt_create_sq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="创建表"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="46dp" />
+
+    <Button
+        android:id="@+id/bt_create_insert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="增"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="94dp" />
+
+    <Button
+        android:id="@+id/bt_create_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="142dp" />
+
+    <Button
+        android:id="@+id/bt_create_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="改"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="190dp" />
+
+    <Button
+        android:id="@+id/bt_create_selete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="231dp" />
 
 </android.support.constraint.ConstraintLayout>
