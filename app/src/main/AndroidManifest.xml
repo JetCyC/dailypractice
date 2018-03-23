@@ -33,7 +33,9 @@
             android:exported="true" />
 
         <activity android:name=".biz.downloadservice.DownloadActivity" />
-        <activity android:name=".biz.sqlite.SqActivity"></activity>
+        <activity android:name=".biz.sqlite.SqActivity" />
+        <activity android:name=".biz.handler.HandlerActivity" />
+        <activity android:name=".biz.myview.MyViewActivity"></activity>
     </application>
 
 </manifest>

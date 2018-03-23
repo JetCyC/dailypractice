@@ -31,6 +31,7 @@ import xianglin.com.retrofit.R;
 import xianglin.com.retrofit.bean.Student;
 import xianglin.com.retrofit.bean.User;
 import xianglin.com.retrofit.biz.downloadservice.DownloadActivity;
+import xianglin.com.retrofit.biz.myview.MyViewActivity;
 import xianglin.com.retrofit.http.ApiService;
 import xianglin.com.retrofit.biz.rxjava.FirstActivity;
 import xianglin.com.retrofit.biz.rxjava.FlowableActivity;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button5;
     private Button button6;
     private Button button7;
+    private Button button8;
     private CompositeDisposable mCompositeDisposable;
 
     @Override
@@ -73,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
         button5 = (Button) findViewById(R.id.bt_flowable);
         button6 = (Button) findViewById(R.id.bt_interval);
         button7 = (Button) findViewById(R.id.bt_download);
+        button8 = (Button) findViewById(R.id.bt_myview);
+        button8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MyViewActivity.class);
+                startActivity(intent);
+            }
+        });
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
