@@ -1,4 +1,4 @@
-package yc.com.retrofit.http;
+package yc.com.app.http;
 
 
 import com.google.gson.GsonBuilder;
@@ -9,7 +9,7 @@ import java.util.Date;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import yc.com.retrofit.utils.json.MyDateDeserializer;
+import yc.com.app.utils.json.MyDateDeserializer;
 
 /**
  * 联网工具类

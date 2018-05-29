@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xianglin.com.retrofit.biz.handler.HandlerActivity">
+    tools:context="yc.com.app.biz.handler.HandlerActivity">
 
     <TextView
         android:id="@+id/tv_query"

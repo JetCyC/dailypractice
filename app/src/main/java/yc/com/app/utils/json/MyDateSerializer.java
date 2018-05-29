@@ -3,7 +3,7 @@
  *  Copyright (c) 2016 Inc.All Rights Reserved.
  */
 
-package yc.com.retrofit.utils.json;
+package yc.com.app.utils.json;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;

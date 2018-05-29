@@ -1,4 +1,4 @@
-package yc.com.retrofit.biz.myview;
+package yc.com.app.biz.myview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,7 +12,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 
-import yc.com.retrofit.R;
+import yc.com.app.R;
 
 /**
  * Description:自定义view练习

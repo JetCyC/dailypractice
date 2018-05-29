@@ -1,4 +1,4 @@
-package yc.com.retrofit.http;
+package yc.com.app.http;
 
 import java.util.List;
 
@@ -9,12 +9,12 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import yc.com.retrofit.bean.LoginRequest;
-import yc.com.retrofit.bean.LoginResponse;
-import yc.com.retrofit.bean.RegisterRequest;
-import yc.com.retrofit.bean.RegisterResponse;
-import yc.com.retrofit.bean.Student;
-import yc.com.retrofit.bean.User;
+import yc.com.app.bean.LoginRequest;
+import yc.com.app.bean.LoginResponse;
+import yc.com.app.bean.RegisterRequest;
+import yc.com.app.bean.RegisterResponse;
+import yc.com.app.bean.Student;
+import yc.com.app.bean.User;
 
 /**
  * []

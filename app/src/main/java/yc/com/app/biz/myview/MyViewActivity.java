@@ -1,9 +1,9 @@
-package yc.com.retrofit.biz.myview;
+package yc.com.app.biz.myview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import yc.com.retrofit.R;
+import yc.com.app.R;
 
 public class MyViewActivity extends AppCompatActivity {
 

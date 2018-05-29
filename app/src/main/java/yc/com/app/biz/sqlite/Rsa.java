@@ -1,4 +1,4 @@
-package yc.com.retrofit.biz.sqlite;
+package yc.com.app.biz.sqlite;
 
 import android.os.Message;
 import android.renderscript.Script;

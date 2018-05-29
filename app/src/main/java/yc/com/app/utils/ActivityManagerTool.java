@@ -1,4 +1,4 @@
-package yc.com.retrofit.utils;
+package yc.com.app.utils;
 
 import android.app.Activity;
 

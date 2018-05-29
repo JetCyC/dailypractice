@@ -1,4 +1,4 @@
-package yc.com.retrofit.biz.sqlite;
+package yc.com.app.biz.sqlite;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -14,7 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import yc.com.retrofit.R;
+import yc.com.app.R;
 
 public class SqActivity extends AppCompatActivity {
 

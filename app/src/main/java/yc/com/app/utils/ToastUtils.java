@@ -1,9 +1,9 @@
-package yc.com.retrofit.utils;
+package yc.com.app.utils;
 
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import yc.com.retrofit.biz.MyApplication;
+import yc.com.app.biz.MyApplication;
 
 
 /**

@@ -1,4 +1,4 @@
-package yc.com.retrofit.biz.rxjava;
+package yc.com.app.biz.rxjava;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import yc.com.retrofit.R;
+import yc.com.app.R;
 
 public class IntervalActivity extends AppCompatActivity {
 

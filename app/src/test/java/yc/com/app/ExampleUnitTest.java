@@ -1,4 +1,4 @@
-package yc.com.retrofit;
+package yc.com.app;
 
 import org.junit.Test;
 

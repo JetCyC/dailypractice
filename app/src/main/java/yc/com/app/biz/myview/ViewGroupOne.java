@@ -1,4 +1,4 @@
-package yc.com.retrofit.biz.myview;
+package yc.com.app.biz.myview;
 
 import android.content.Context;
 import android.os.Build;

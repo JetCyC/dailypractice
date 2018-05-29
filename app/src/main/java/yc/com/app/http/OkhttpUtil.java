@@ -1,8 +1,8 @@
-package yc.com.retrofit.http;
+package yc.com.app.http;
 
 import okhttp3.OkHttpClient;
-import yc.com.retrofit.BuildConfig;
-import yc.com.retrofit.http.interceptor.HttpLoggingInterceptor;
+import yc.com.app.BuildConfig;
+import yc.com.app.http.interceptor.HttpLoggingInterceptor;
 
 /**
  * Okhttp工具类

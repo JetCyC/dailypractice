@@ -18,7 +18,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package yc.com.retrofit.http.interceptor;
+package yc.com.app.http.interceptor;
 
 import java.io.EOFException;
 import java.io.IOException;

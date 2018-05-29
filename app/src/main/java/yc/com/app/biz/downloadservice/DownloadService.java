@@ -1,4 +1,4 @@
-package yc.com.retrofit.biz.downloadservice;
+package yc.com.app.biz.downloadservice;
 
 import android.app.IntentService;
 import android.app.Notification;
@@ -15,8 +15,8 @@ import android.util.Log;
 
 import java.io.File;
 
-import yc.com.retrofit.R;
-import yc.com.retrofit.utils.ToastUtils;
+import yc.com.app.R;
+import yc.com.app.utils.ToastUtils;
 
 public class DownloadService extends Service {
 

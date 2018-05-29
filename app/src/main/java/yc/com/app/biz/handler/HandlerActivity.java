@@ -1,4 +1,4 @@
-package yc.com.retrofit.biz.handler;
+package yc.com.app.biz.handler;
 
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import yc.com.retrofit.R;
+import yc.com.app.R;
 
 //功能：每隔5秒去服务器查询最新的数据
 public class HandlerActivity extends AppCompatActivity {
