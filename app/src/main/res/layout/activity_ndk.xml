@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".biz.ndk.NdkActivity">
 
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:background="#2f96ff"
+        android:text="getNDK"/>
+
 </android.support.constraint.ConstraintLayout>
