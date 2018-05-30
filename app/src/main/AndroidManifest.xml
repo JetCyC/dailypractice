@@ -35,7 +35,8 @@
         <activity android:name=".biz.downloadservice.DownloadActivity" />
         <activity android:name=".biz.sqlite.SqActivity" />
         <activity android:name=".biz.handler.HandlerActivity" />
-        <activity android:name=".biz.myview.MyViewActivity"></activity>
+        <activity android:name=".biz.myview.MyViewActivity" />
+        <activity android:name=".biz.ndk.NdkActivity"></activity>
     </application>
 
 </manifest>
