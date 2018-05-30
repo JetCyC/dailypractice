@@ -14,5 +14,4 @@ public class NdkActivity extends AppCompatActivity {
     }
 
 
-
 }
