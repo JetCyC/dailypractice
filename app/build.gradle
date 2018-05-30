@@ -10,6 +10,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            //so库的名字
+           moduleName "myLib"
+        }
+
     }
     buildTypes {
         release {
@@ -17,6 +22,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    configurations.all {
+        resolutionStrategy {
+            force 'com.android.support:appcompat-v7:24.2.1'
+        }
+    }
+    sourceSets {
+        main {
+            //让AS识别libs下的.so第三方包
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    //也可以使用CMake
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+
 }
 
 dependencies {
@@ -24,8 +47,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    // android support v7
-    compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 
@@ -46,5 +67,7 @@ dependencies {
     // stetho
     compile 'com.facebook.stetho:stetho:1.5.0'
     compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    //rn
+    compile "com.facebook.react:react-native:+"
 
 }

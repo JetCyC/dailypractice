@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="yc.com.app">
-
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="26"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -36,7 +36,8 @@
         <activity android:name=".biz.sqlite.SqActivity" />
         <activity android:name=".biz.handler.HandlerActivity" />
         <activity android:name=".biz.myview.MyViewActivity" />
-        <activity android:name=".biz.ndk.NdkActivity"></activity>
+        <activity android:name=".biz.ndk.NdkActivity"/>
+        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 
 </manifest>

@@ -64,5 +64,16 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="myview" />
+
+        <Button
+            android:id="@+id/bt_rn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="reactnative" />
+        <Button
+            android:id="@+id/bt_ndk"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="ndk" />
     </LinearLayout>
 </ScrollView>
