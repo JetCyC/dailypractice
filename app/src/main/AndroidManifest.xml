@@ -37,6 +37,7 @@
         <activity android:name=".biz.handler.HandlerActivity" />
         <activity android:name=".biz.myview.MyViewActivity" />
         <activity android:name=".biz.ndk.NdkActivity"/>
+        <activity android:name=".base.BaseRnActivity"/>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 

@@ -28,7 +28,7 @@ public class BaseRnActivity extends Activity implements DefaultHardwareBackBtnHa
         mReactRootView = new ReactRootView(this);
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
-                .setBundleAssetName("index.android.bundle")
+                .setBundleAssetName("index.bundle")
                 .setJSMainModulePath("index")
                 .addPackage(new MainReactPackage())
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
@@ -37,7 +37,7 @@ public class BaseRnActivity extends Activity implements DefaultHardwareBackBtnHa
 
 
         mReactRootView.startReactApplication(mReactInstanceManager,
-                "myRn",
+                "Root",
                 null);
         setContentView(mReactRootView);
 
@@ -91,6 +91,5 @@ public class BaseRnActivity extends Activity implements DefaultHardwareBackBtnHa
             super.onBackPressed();
         }
     }
-
 
 }

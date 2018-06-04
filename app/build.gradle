@@ -10,9 +10,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
         ndk {
-            //so库的名字
-           moduleName "myLib"
+            abiFilters "armeabi-v7a", "x86"
+        }
+
+        packagingOptions {
+            exclude "lib/arm64-v8a/librealm-jni.so"
         }
 
     }
@@ -27,18 +32,18 @@ android {
             force 'com.android.support:appcompat-v7:24.2.1'
         }
     }
-    sourceSets {
-        main {
-            //让AS识别libs下的.so第三方包
-            jniLibs.srcDirs = ['libs']
-        }
-    }
+//    sourceSets {
+//        main {
+//            //让AS识别libs下的.so第三方包
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
     //也可以使用CMake
-    externalNativeBuild {
-        ndkBuild {
-            path 'src/main/jni/Android.mk'
-        }
-    }
+//    externalNativeBuild {
+//        ndkBuild {
+//            path 'src/main/jni/Android.mk'
+//        }
+//    }
 
 }
 
@@ -67,7 +72,7 @@ dependencies {
     // stetho
     compile 'com.facebook.stetho:stetho:1.5.0'
     compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'
-    //rn
-    compile "com.facebook.react:react-native:+"
+    // react native
+    implementation 'com.facebook.react:react-native:+'
 
 }

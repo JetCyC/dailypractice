@@ -33,7 +33,6 @@ import yc.com.app.bean.Student;
 import yc.com.app.bean.User;
 import yc.com.app.biz.downloadservice.DownloadActivity;
 import yc.com.app.biz.myview.MyViewActivity;
-import yc.com.app.biz.ndk.NdkActivity;
 import yc.com.app.http.ApiService;
 import yc.com.app.biz.rxjava.FirstActivity;
 import yc.com.app.biz.rxjava.FlowableActivity;
@@ -86,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
         button10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NdkActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(MainActivity.this, NdkActivity.class);
+//                startActivity(intent);
             }
         });
 
