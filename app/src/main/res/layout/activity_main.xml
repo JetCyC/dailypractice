@@ -70,10 +70,17 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="react-native" />
+
         <Button
             android:id="@+id/bt_ndk"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="ndk" />
+
+        <Button
+            android:id="@+id/bt_view_sun"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="view_sun" />
     </LinearLayout>
 </ScrollView>

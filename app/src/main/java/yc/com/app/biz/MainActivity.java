@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button8;
     private Button button9;
     private Button button10;
+    private Button button11;
     private CompositeDisposable mCompositeDisposable;
 
     @Override
@@ -81,6 +82,16 @@ public class MainActivity extends AppCompatActivity {
         button8 = (Button) findViewById(R.id.bt_myview);
         button9 = (Button) findViewById(R.id.bt_rn);
         button10 = (Button) findViewById(R.id.bt_ndk);
+        button11 = (Button) findViewById(R.id.bt_view_sun);
+
+        button11.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
 
         button10.setOnClickListener(new View.OnClickListener() {
             @Override

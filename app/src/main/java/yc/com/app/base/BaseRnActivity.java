@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.facebook.react.LifecycleState;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
-import com.facebook.react.common.LifecycleState;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
 
@@ -29,7 +29,8 @@ public class BaseRnActivity extends Activity implements DefaultHardwareBackBtnHa
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
                 .setBundleAssetName("index.bundle")
-                .setJSMainModulePath("index")
+                .setJSBundleFile("index")
+                //.setJSMainModulePath("index")
                 .addPackage(new MainReactPackage())
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
@@ -58,7 +59,7 @@ public class BaseRnActivity extends Activity implements DefaultHardwareBackBtnHa
         super.onPause();
 
         if (mReactInstanceManager != null) {
-            mReactInstanceManager.onHostPause(this);
+            mReactInstanceManager.onPause();
         }
     }
 
@@ -67,7 +68,7 @@ public class BaseRnActivity extends Activity implements DefaultHardwareBackBtnHa
         super.onResume();
 
         if (mReactInstanceManager != null) {
-            mReactInstanceManager.onHostResume(this, this);
+            mReactInstanceManager.onResume(this,this);
         }
     }
 
@@ -76,11 +77,12 @@ public class BaseRnActivity extends Activity implements DefaultHardwareBackBtnHa
         super.onDestroy();
 
         if (mReactInstanceManager != null) {
-            mReactInstanceManager.onHostDestroy(this);
+            mReactInstanceManager.onDestroy();
         }
-        if (mReactRootView != null) {
-            mReactRootView.unmountReactApplication();
-        }
+//        if (mReactRootView != null) {
+//            mReactRootView.unmountReactApplication();
+//            mReactRootView.appli
+//        }
     }
 
     @Override
