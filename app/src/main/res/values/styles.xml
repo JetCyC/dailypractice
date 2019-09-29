@@ -12,4 +12,9 @@
         <attr name="default_size" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="MyTouchBall">
+        <attr name="imgSampleSize" format="integer" />
+        <attr name="duration" format="integer" />
+    </declare-styleable>
+
 </resources>
