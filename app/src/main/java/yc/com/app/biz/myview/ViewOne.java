@@ -16,7 +16,7 @@ import yc.com.app.R;
 
 /**
  * Description:自定义view练习
- * Author: ex-caoyanchang
+ * Author: caoyanchang
  * Create: 2018/3/22 10:53
  */
 

@@ -84,13 +84,11 @@ public class MainActivity extends AppCompatActivity {
         button10 = (Button) findViewById(R.id.bt_ndk);
         button11 = (Button) findViewById(R.id.bt_view_sun);
 
-        button11.setOnClickListener(new View.OnClickListener(){
+        button11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
-
 
 
         button10.setOnClickListener(new View.OnClickListener() {
